@@ -10,12 +10,8 @@ namespace laba5
         public SaladConsoleMenu(ISaladBuilder builder)
         {
             _salad = builder
-                .SetName("Летний витаминный")
-                .AddIngredient(new Tomato(150, "Черри"))
-                .AddIngredient(new Cucumber(200, true))
-                .AddIngredient(new Onion(50, false))
-                .AddIngredient(new OliveOil(15))
-                .Build();
+            .SetName("Авторский салат")
+            .Build();
         }
 
         public void Run()
@@ -67,9 +63,17 @@ namespace laba5
         private void PrintSalad()
         {
             Console.WriteLine($"Салат «{_salad.Name}» | Всего: {_salad.CalculateTotalCalories():F1} ккал");
+    
+            bool isEmpty = true;
             foreach (var ing in _salad)
             {
                 Console.WriteLine($"  - {ing}");
+                isEmpty = false;
+            }
+
+            if (isEmpty)
+            {
+                Console.WriteLine("  Салат пока пуст. Выберите пункт 2, чтобы добавить ингредиенты.");
             }
         }
 
